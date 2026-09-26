@@ -28,7 +28,6 @@ def progo_1d(N, x0, burn_in, T, theta):
         
         )
 
-        x=x0
         # finding sample with max m_k:
         log_density = -k*np.array([f(x) for x in samples])
 
