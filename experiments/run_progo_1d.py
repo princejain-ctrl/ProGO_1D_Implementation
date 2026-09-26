@@ -7,5 +7,5 @@ best_f, best_x = progo_1d(
     theta=20.0
 )
 
-print("Best x:", best_x)
-print("Best f:", best_f)
+print("Best_x:", best_x)
+print("Best_f:", best_f)

@@ -44,9 +44,9 @@ def progo_1d(N, x0, burn_in, T, theta):
         
         print(
             f"Iteration {t+1}: "
-            f"k={k:.4f}, "
-            f"x={x1:.6f}, "
-            f"f(x)={f(x1):.6f}"
+            f"k={k}, "
+            f"x={x1}, "
+            f"f(x)={f(x1)} "
         )
         # increase k
         k = np.e*k
