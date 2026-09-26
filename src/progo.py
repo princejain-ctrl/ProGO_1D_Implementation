@@ -35,7 +35,7 @@ def progo_1d(N, x0, burn_in, T, theta):
 
         x1 = samples[best_index]
 
-        # now see best objective value"
+        # now see best (lowest)objective value
         if f(x1) < best_f:
             best_f = f(x1)
             best_x = x1

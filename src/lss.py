@@ -8,20 +8,13 @@ def lss_progo_1d(
     # print (f(5))
     # print (f(1.756))
 
-    # Initialising the variables (randomly)
-    # OVERWRITE
-    # N = 2000
-    # burn_in = 2000
-    # k = 1
-
+    # Initialising the variables
     x = x0
 
     # the thesis had an inconsistency on initialisation of w, i used a different way and will see how it affects the results in the experiment
     w = f(x) + np.random.exponential(scale=1/k)
 
     # initialising s via the gamma distribution
-    # OVERWRITE
-    # theta = 20.0
 
     s= np.random.gamma(
         shape = 2, #as idescribed in the paper
@@ -55,7 +48,7 @@ def lss_progo_1d(
 
             else:
                 b = min(b, x_proposed)
-        # Accepted sample
+        # Accepted
         x=x_proposed
 
         # update w:
