@@ -65,28 +65,28 @@ The following assumptions are specific to the current 1-D implementation:
 - The current validation is distributional/visual; no formal MCMC convergence or effective-sample-size analysis has been performed.
 
 DIFFERENCES AND INCONSISTENCIES COUNTERED:
-- Initialization of w
+- Initialization of w: 
 The paper's Algorithm 1 specifies an initial
 w^(0) ~ Uniform(0, π(x^(0)))
 but later updates w using
 w^(t) = f(x^(t)) + Exp(k)
 The latter is also consistent with the conditional distribution implied by the latent joint density. The implementation therefore uses w = f(x) + Exp(k) for initialization as well.
 
-- k = 0
+- k = 0: 
 The theoretical formulation includes k = 0, where
 m_0(x) = PI(x)
 but the LSS update uses Exp(k), which is not directly defined for rate k = 0. Therefore k = 0 is treated as a theoretical/reference case, not as a normal LSS iteration.
 
-- Domain handling
+- Domain handling: 
 The paper describes the slice construction over the domain. In the current Python implementation, the proposal interval is explicitly clipped to [0,5] because this is the domain of the reproduced 1-D example.
 
-- Normalization
+- Normalization: 
 Z_k is calculated numerically when plotting the theoretical m_k for validation, but is not calculated during candidate selection. This is unnecessary for ranking samples because Z_k is common to all candidates at a fixed k.
 
-- Log-density
+- Log-density: 
 Candidate selection uses -k*f(x) instead of directly computing exp(-k f(x)). This gives the same ordering for the uniform prior and is numerically safer for larger k.
 
-- Random seed
+- Random seed: 
 The seed is set once before the ProGO experiment rather than inside LSS. This allows successive ProGO iterations to use different random draws while keeping the overall experiment reproducible.
 
 5, 13.5914, 36.9453, 100.4277, ...
