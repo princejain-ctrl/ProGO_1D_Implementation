@@ -1,8 +1,10 @@
 ProGO 1-D IMPLEMENTATION:
+
 This repository contains a Python implementation of the 1-D ProGO framework described in Xinyu Zhang's PhD thesis.
 The current work focuses only on reproducing and understanding the 1-D ProGO formulation, particularly the Latent Slice Sampler (LSS) and the evolution of the nascent-minima distribution as the concentration parameter k increases.
 
 ABOUT PAPER:
+
 ProGO converts an optimization problem: minimize f(x), x ∈ Ω into a sequence of probability distributions
 m_k(x) = exp(-k f(x)) PI(x) / Z_k
 
@@ -15,6 +17,7 @@ x ∈ [0,5]
 with a uniform prior. The reported global minimum is approximately x ≈ 1.756 f(x) ≈ 0.353
 
 WHAT I IMPLEMENTED:
+
 The implementation is divided into:
 src/lss.py
 1-D Latent Slice Sampler
@@ -33,9 +36,11 @@ The ProGO loop starts with k = 5 and updates k tO e^K after each iteration.
 For the current uniform-prior example, candidate samples can be ranked using -k*f(x) because PI(x) is constant and the normalizing constant is common to all samples at a fixed k.
 
 VALIDATION: 
+
 Two main experiments were performed.
 
 LSS distribution validation:
+
 The empirical LSS samples were compared with the numerically normalized theoretical m_k for k = 1, 3, 9 using
 N = 2000
 burn-in = 2000
@@ -43,7 +48,8 @@ x0 = 2
 θ = 20
 The empirical histograms follow the corresponding theoretical distributions, including their increasing concentration around low values of f(x).
 
-PROGO OPTIMIZATION
+PROGO OPTIMIZATION:
+
 Using
 N = 200
 burn-in = 200
@@ -54,6 +60,7 @@ initial k = 5
 the implementation reaches approximately x = 1.756 f(x) = 0.352884 which is consistent with the minimum reported for the 1-D example.
 
 ASSUMPTIONS AND IMPLEMENTATION CHOICES:
+
 The following assumptions are specific to the current 1-D implementation:
 -The domaiN is fixed to [0,5], matching the paper's 1-D example.
 - The prior PI(x) is uniform on [0,5]. (and therefore, the implementation does not use pi_x function to initialise the distribution since the constant cancels out eventually.)
@@ -65,6 +72,7 @@ The following assumptions are specific to the current 1-D implementation:
 - The current validation is distributional/visual; no formal MCMC convergence or effective-sample-size analysis has been performed.
 
 DIFFERENCES AND INCONSISTENCIES COUNTERED:
+
 - Initialization of w: 
 The paper's Algorithm 1 specifies an initial
 w^(0) ~ Uniform(0, π(x^(0)))
