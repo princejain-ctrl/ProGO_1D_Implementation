@@ -41,13 +41,14 @@ def progo_1d(N, x0, burn_in, T, theta):
             best_f = f(x1)
             best_x = x1
 
-        # increase k
-        k = np.e*k
+        
         print(
             f"Iteration {t+1}: "
             f"k={k:.4f}, "
             f"x={x1:.6f}, "
             f"f(x)={f(x1):.6f}"
         )
+        # increase k
+        k = np.e*k
 
     return best_f, best_x
